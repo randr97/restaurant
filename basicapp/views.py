@@ -14,7 +14,7 @@ def index(request):
 	return render(request,'basicapp/index.html',{})
 
 def orderplaced(request):
-	return render(request,'webapp/orderplaced.html',{})
+	return render(request,'basicapp/orderplaced.html',{})
 
 
 def restuarent(request):
