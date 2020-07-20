@@ -22,8 +22,8 @@ def restuarent(request):
 	query 	= request.GET.get('q')
 	if query:
 		r_object=Restaurant.objects.filter(Q(rname__icontains=query)).distinct()
-		return render(request,'webapp/restaurents.html',{'r_object':r_object})
-	return render(request,'webapp/restaurents.html',{'r_object':r_object})
+		return render(request,'basicapp/restaurents.html',{'r_object':r_object})
+	return render(request,'basicapp/restaurents.html',{'r_object':r_object})
 
 
 def Logout(request):
@@ -54,7 +54,7 @@ def customerRegister(request):
 	context ={
 		'form':form
 	}			
-	return render(request,'webapp/signup.html',context)
+	return render(request,'basicapp/signup.html',context)
 
 
 
@@ -68,10 +68,10 @@ def customerLogin(request):
 				login(request,user)
 				return redirect("profile")
 			else:
-				return render(request,'webapp/login.html',{'error_message':'Your account disable'})
+				return render(request,'basicapp/login.html',{'error_message':'Your account disable'})
 		else:
-			return render(request,'webapp/login.html',{'error_message': 'Invalid Login'})
-	return render(request,'webapp/login.html')
+			return render(request,'basicapp/login.html',{'error_message': 'Invalid Login'})
+	return render(request,'basicapp/login.html')
 
 
 
@@ -81,7 +81,7 @@ def customerProfile(request,pk=None):
 	else:
 		user=request.user
 	
-	return render(request,'webapp/profile.html',{'user':user})
+	return render(request,'basicapp/profile.html',{'user':user})
 
 
 def createCustomer(request):
@@ -95,7 +95,7 @@ def createCustomer(request):
 	'form':form,
 	'title':"Complete Your profile"
 	}
-	return render(request,'webapp/profile_form.html',context)
+	return render(request,'basicapp/profile_form.html',context)
 
 
 
@@ -108,7 +108,7 @@ def updateCustomer(request,id):
 	'form':form,
 	'title':"Update Your profile"
 	}
-	return render(request,'webapp/profile_form.html',context)
+	return render(request,'basicapp/profile_form.html',context)
 
 def restuarantMenu(request,pk=None):
 
@@ -135,7 +135,7 @@ def restuarantMenu(request,pk=None):
 		'rinfo' : rest[0].info,
 		'rlocation':rest[0].location,
 	}
-	return render(request,'webapp/menu.html',context)
+	return render(request,'basicapp/menu.html',context)
 
 
 @login_required(login_url='/login/user/')
@@ -180,7 +180,7 @@ def checkout(request):
 			"totalprice":totalprice,
 			"oid":oid.id
 		}	
-		return render(request,'webapp/order.html',context)
+		return render(request,'basicapp/order.html',context)
 
 
 
@@ -203,7 +203,7 @@ def restRegister(request):
 	context ={
 		'form':form
 	}			
-	return render(request,'webapp/restsignup.html',context)	
+	return render(request,'basicapp/restsignup.html',context)	
 
 
 
@@ -217,10 +217,10 @@ def restLogin(request):
 				login(request,user)
 				return redirect("rprofile")
 			else:
-				return render(request,'webapp/restlogin.html',{'error_message':'Your account disable'})
+				return render(request,'basicapp/restlogin.html',{'error_message':'Your account disable'})
 		else:
-			return render(request,'webapp/restlogin.html',{'error_message': 'Invalid Login'})
-	return render(request,'webapp/restlogin.html')
+			return render(request,'basicapp/restlogin.html',{'error_message': 'Invalid Login'})
+	return render(request,'basicapp/restlogin.html')
 
 
 
@@ -230,7 +230,7 @@ def restaurantProfile(request,pk=None):
 	else:
 		user=request.user
 	
-	return render(request,'webapp/rest_profile.html',{'user':user})
+	return render(request,'basicapp/rest_profile.html',{'user':user})
 
 
 @login_required(login_url='/login/restaurant/')
@@ -245,7 +245,7 @@ def createRestaurant(request):
 	'form':form,
 	'title':"Complete Your Restaurant profile"
 	}
-	return render(request,'webapp/rest_profile_form.html',context)
+	return render(request,'basicapp/rest_profile_form.html',context)
 
 
 @login_required(login_url='/login/restaurant/')
@@ -258,7 +258,7 @@ def updateRestaurant(request,id):
 	'form':form,
 	'title':"Update Your Restaurant profile"
 	}
-	return render(request,'webapp/rest_profile_form.html',context)
+	return render(request,'basicapp/rest_profile_form.html',context)
 
 
 
@@ -313,7 +313,7 @@ def menuManipulation(request):
 		"items":items,
 		"username":request.user.username,
 	}
-	return render(request,'webapp/menu_modify.html',context)
+	return render(request,'basicapp/menu_modify.html',context)
 
 def orderlist(request):
 	if request.POST:
@@ -392,7 +392,7 @@ def orderlist(request):
 		"orders" : corders,
 	}
 
-	return render(request,"webapp/order-list.html",context)
+	return render(request,"basicapp/order-list.html",context)
 	
 
 
