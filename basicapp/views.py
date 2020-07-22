@@ -6,9 +6,10 @@ from collections import Counter
 from django.urls import reverse
 from django.db.models import Q
 from .models import *
+from django.http import JsonResponse
+import stripe
 
-
-
+stripe.api_key = "sk_test_51H7hguFDEKXB8Y6ahUE7aiZi9a5Z0uofHQvPNqpInKCfBz4NjexbNOSQhISOFYWhmsl290y2sGHqFBGlqU2aMXyd00ZVmgGiYC"
 
 def index(request):
 	return render(request,'basicapp/index.html',{})
@@ -109,7 +110,8 @@ def updateCustomer(request,id):
 	'title':"Update Your profile"
 	}
 	return render(request,'basicapp/profile_form.html',context)
-
+    
+@login_required(login_url='/login/user/')
 def restuarantMenu(request,pk=None):
 
 	menu = Menu.objects.filter(r_id=pk)
@@ -407,7 +409,31 @@ def orderlist(request):
 	}
 
 	return render(request,"basicapp/order-list.html",context)
-	
+    
+def new(request):
+    return render(request,'basicapp/new.html')
 
+def donation(request):
+    
+    if request.method == "POST":
+    
+        print("Data : ", request.POST)
+        amount = int(request.POST['amount'])
+        customer = stripe.Customer.create(
+            email = request.POST['email'],
+            name = request.POST['nickname'],
+            source = request.POST['stripeToken']
+        )
+        charge = stripe.Charge.create(
+            customer = customer,
+            amount = amount * 100,
+            currency = 'inr',
+            description= 'Donation'
+        )
+    return redirect(reverse('success',args=[amount]))
+    
+def success(request, args):
+    amount = args
+    return render(request, 'basicapp/success.html', {'amount':amount})
 
 

@@ -21,5 +21,8 @@ urlpatterns = [
     path('logout/',views.Logout,name='logout'),
     path('restaurant/<int:pk>/',views.restuarantMenu,name='menu'),
     path('checkout/',views.checkout,name='checkout'),
+    path('new/',views.new,name='new'),
+    path('donation/',views.donation, name='donation'),
+    path('success/<str:args>/',views.success,name='success'),
 
 ]

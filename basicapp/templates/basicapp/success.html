@@ -1,0 +1,12 @@
+{% extends 'basicapp/base.html'%}
+{% block title %}Log In{% endblock %}
+
+{% block body %}
+	<div id="box">
+		<h4>Thank you for your contribution of ${{amount}}!</h4>
+		
+		<hr>
+		<a class="myButton" href="{% url 'index' %}">&#x2190;Back to Home</a>
+	</div>
+
+{% endblock body %}
