@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import User,Customer,Restaurant,Item,Menu
+from .models import *
 
 class CustomerSignUpForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput)
@@ -26,6 +26,13 @@ class RestuarantSignUpForm(forms.ModelForm):
 			if commit:
 				user.save()
 			return user
+            
+            
+class ItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ['fname','category']
+
 
 class CustomerForm(forms.ModelForm):
 	class Meta:

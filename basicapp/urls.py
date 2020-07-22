@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/restaurant/',views.restLogin,name='rlogin'),
     path('register/restaurant/',views.restRegister,name='rregister'),
     path('profile/restaurant/',views.restaurantProfile,name='rprofile'),
+    path('profile/restaurant/menu',views.restaurantMenu,name='addfood'),
     path('profile/user/',views.customerProfile,name='profile'),
     path('user/create/',views.createCustomer,name='ccreate'),
     path('user/update/<int:id>/',views.updateCustomer,name='cupdate'),

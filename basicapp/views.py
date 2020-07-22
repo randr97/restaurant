@@ -100,7 +100,7 @@ def createCustomer(request):
 
 
 def updateCustomer(request,id):
-	form  	 = CustomerForm(request.POST or None,instance=request.user.customer)
+	form = CustomerForm(request.POST or None,instance=request.user.customer)
 	if form.is_valid():
 		form.save()
 		return redirect('profile')
@@ -179,7 +179,7 @@ def checkout(request):
 			"items":items,
 			"totalprice":totalprice,
 			"oid":oid.id
-		}	
+		}	                    
 		return render(request,'basicapp/order.html',context)
 
 
@@ -246,6 +246,20 @@ def createRestaurant(request):
 	'title':"Complete Your Restaurant profile"
 	}
 	return render(request,'basicapp/rest_profile_form.html',context)
+
+@login_required(login_url='/login/restaurant/')
+def restaurantMenu(request):
+	form=ItemForm(request.POST or None,request.FILES or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.user = request.user
+		instance.save()
+		return redirect("addfood")
+	context={
+	'form':form,
+	'title':"Add Menu"
+	}
+	return render(request,'basicapp/rest_add_menu.html',context)
 
 
 @login_required(login_url='/login/restaurant/')
