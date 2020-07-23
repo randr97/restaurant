@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'basicapp',
+    'stripe',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,3 +130,43 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 AUTH_USER_MODEL = "basicapp.User" 
+
+
+if DEBUG:
+    STRIPE_PUBLISHABLE_KEY = ''
+    STRIPE_SECRET_KEY = ''
+
+else:
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_51H7hguFDEKXB8Y6a6ccUqPUTJkQGkhleytb2koh8tKdddMbNnTjvgMTu0kGRSp286b5rXULCXtQrmmS2Rb4ak58n00CsZJQpZU'
+    STRIPE_SECRET_KEY = 'sk_test_51H7hguFDEKXB8Y6ahUE7aiZi9a5Z0uofHQvPNqpInKCfBz4NjexbNOSQhISOFYWhmsl290y2sGHqFBGlqU2aMXyd00ZVmgGiYC'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

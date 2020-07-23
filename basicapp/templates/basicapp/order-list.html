@@ -3,7 +3,7 @@
 
 {% block body %}
 {% for order in orders %}
-            <div class="container">
+  <div class="container">
                     <div class="col-md-12 restaurent-title">
                         <div class="logo-title" style="border: 0;">
                             <h4>{{order.0}} - {{order.1}} - {{order.6}}</h4>
@@ -31,6 +31,9 @@
                             </table>
                         </div>
                     </div>
+					
+					
+										
                     <div class="col-md-12 buy"  style="display: inline-block;">
                         <form action="" method="POST">{% csrf_token %}
                         <span>Total price: &#x20b9;{{order.3}}</span>
@@ -80,5 +83,8 @@
                 
             
         </div>
+		
+		
+	
 {% endfor %}
 {% endblock %}
