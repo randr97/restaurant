@@ -1,0 +1,1 @@
+web: gunicorn restoblog.wsgi --log-file
