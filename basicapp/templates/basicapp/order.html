@@ -70,7 +70,13 @@
 
 </div>
 <script src="https://js.stripe.com/v3/"></script>
-<div class="jumbotron">
+
+<br>
+<p></p>
+<div class="container">
+
+<div class="container">
+	<div class="container">
 	<form action="{% url 'donation' %}" method="post" id="payment-form">
 	{% csrf_token %}
   
@@ -90,19 +96,26 @@
 	<div class="form-field-6">
 		<input type="text" name="nickname" placeholder="Enter your name">
 	</div>
+	<br>
+	
 	<label for="card-element">
 	  Credit or debit card
 	</label>
+	<br>
 	<div id="card-element">
 	  <!-- A Stripe Element will be inserted here. -->
 	</div>
-
+	
 	<!-- Used to display form errors. -->
 	<div id="card-errors" role="alert"></div>
   
 	<br>
   <button class="btn btn-success btn-lg" >Submit Payment</button>
 </form>
+</div>
+</div>
+
+	
 </div>
 
 

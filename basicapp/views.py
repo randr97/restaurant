@@ -75,14 +75,20 @@ def customerLogin(request):
 	return render(request,'basicapp/login.html')
 
 
-
+@login_required(login_url='/login/user/')
 def customerProfile(request,pk=None):
-	if pk:
-		user = User.objects.get(pk=pk)
-	else:
-		user=request.user
-	
-	return render(request,'basicapp/profile.html',{'user':user})
+    if request.user.is_customer:
+        if pk:
+            user = User.objects.get(pk=pk)
+        else:
+            user=request.user
+            
+
+        return render(request,'basicapp/profile.html',{'user':user})
+        
+    else:
+        return redirect("login")
+    
 
 
 def createCustomer(request):
@@ -225,14 +231,21 @@ def restLogin(request):
 	return render(request,'basicapp/restlogin.html')
 
 
-
+@login_required(login_url='/login/restaurant/')
 def restaurantProfile(request,pk=None):
-	if pk:
-		user = User.objects.get(pk=pk)
-	else:
-		user=request.user
-	
-	return render(request,'basicapp/rest_profile.html',{'user':user})
+    if request.user.is_restaurant:
+        if pk:
+            user = User.objects.get(pk=pk)
+            print("first ", user)
+        else:
+            user=request.user
+            print("second ", user)
+        print(" restorenjt")
+        return render(request,'basicapp/rest_profile.html',{'user':user})
+        
+    else:
+        print("not restorenjt")
+        return redirect("rlogin")
 
 
 @login_required(login_url='/login/restaurant/')
@@ -331,6 +344,7 @@ def menuManipulation(request):
 	}
 	return render(request,'basicapp/menu_modify.html',context)
 
+@login_required(login_url='/login/restaurant/')
 def orderlist(request):
 	if request.POST:
 		oid = request.POST['orderid']
